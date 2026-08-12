@@ -44,14 +44,15 @@
                             </svg>
                             
                             <!-- Kotak Tooltip (Muncul saat di-hover) -->
-                            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 text-center">
+                            <!-- Tambahan: w-[220px] dan max-w-none untuk mencegah teks menyusut, serta posisi digeser ke kiri (right-0 md:left-1/2) -->
+                            <div class="absolute bottom-full right-0 md:left-1/2 md:transform md:-translate-x-1/2 mb-2 w-[220px] max-w-none p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-center">
                                 <p class="text-xs text-gray-300 font-normal leading-relaxed">
                                     Cantumkan username Instagram sesuai dengan akun yang akan digunakan untuk upload bukti skor nantinya.
                                 </p>
                                 <!-- Segitiga Panah Bawah -->
-                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-[6px] border-transparent border-t-slate-800"></div>
+                                <div class="absolute top-full right-[6px] md:right-auto md:left-1/2 transform md:-translate-x-1/2 border-[6px] border-transparent border-t-slate-800"></div>
                                 <!-- Segitiga Panah Bawah (Border Luar) -->
-                                <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-[7px] border-transparent border-t-slate-600 -z-10 mt-[1px]"></div>
+                                <div class="absolute top-full right-[5px] md:right-auto md:left-1/2 transform md:-translate-x-1/2 border-[7px] border-transparent border-t-slate-600 -z-10 mt-[1px]"></div>
                             </div>
                         </div>
                     </label>
