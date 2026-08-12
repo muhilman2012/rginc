@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mendefinisikan warna kustom RGinc */
+  --color-rginc-navy: #0F172A;
+  --color-rginc-gold: #D4AF37;
+}

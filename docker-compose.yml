@@ -1,0 +1,46 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rginc_app
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - rginc_network
+    depends_on:
+      - db
+
+  web:
+    image: nginx:alpine
+    container_name: rginc_web
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - rginc_network
+
+  db:
+    image: mysql:8.0
+    container_name: rginc_db
+    environment:
+      MYSQL_DATABASE: rginc_piu
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: rginc_user
+      MYSQL_PASSWORD: secretpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - rginc_network
+
+networks:
+  rginc_network:
+    driver: bridge
+
+volumes:
+  db_data:
