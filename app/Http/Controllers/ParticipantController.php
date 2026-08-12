@@ -59,7 +59,7 @@ class ParticipantController extends Controller
         }
 
         return redirect()->route('register.success')->with([
-            'success' => "Pendaftaran berhasil! Silakan cek email Anda secara berkala.",
+            'success' => "Pendaftaran berhasil! Silakan cek kotak masuk (Inbox) atau folder Spam pada email Anda.",
             'participantCode' => $participantCode 
         ]);
     }

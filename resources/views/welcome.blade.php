@@ -62,7 +62,7 @@
             <p class="text-sm text-gray-400 mb-4">Cocok untuk pemain menengah yang ingin menguji konsistensi.</p>
             <div class="bg-slate-900 p-3 rounded border border-slate-700">
                 <span class="text-xs text-gray-500 block mb-1">Estimasi Level:</span>
-                <span class="font-mono text-rginc-gold font-bold">Single 14-18</span>
+                <span class="font-mono text-rginc-gold font-bold">Level 14 - 18</span>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
             <p class="text-sm text-gray-400 mb-4">Kategori khusus bagi para srikandi PIU yang siap beradu kecepatan.</p>
             <div class="bg-slate-900 p-3 rounded border border-slate-700">
                 <span class="text-xs text-gray-500 block mb-1">Estimasi Level:</span>
-                <span class="font-mono text-rginc-gold font-bold">Single 16-19 / Double 20-21</span>
+                <span class="font-mono text-rginc-gold font-bold">Level 16 - 21</span>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
             <p class="text-sm text-gray-400 mb-4">Uji kecepatan kakimu menuju level profesional berikutnya.</p>
             <div class="bg-slate-900 p-3 rounded border border-slate-700">
                 <span class="text-xs text-gray-500 block mb-1">Estimasi Level:</span>
-                <span class="font-mono text-rginc-gold font-bold">Single 17-22 / Double 21-22</span>
+                <span class="font-mono text-rginc-gold font-bold">Level 17 - 22</span>
             </div>
         </div>
 
@@ -101,7 +101,7 @@
             <p class="text-sm text-gray-400 mb-4">Kelas tertinggi bagi para monster PIU. Buktikan siapa yang tercepat!</p>
             <div class="bg-slate-900 p-3 rounded border border-slate-700">
                 <span class="text-xs text-gray-500 block mb-1">Estimasi Level:</span>
-                <span class="font-mono text-rginc-gold font-bold">Single 20-23 / Double 24</span>
+                <span class="font-mono text-rginc-gold font-bold">Level 20 - 25</span>
             </div>
         </div>
     </div>
@@ -185,7 +185,7 @@
                             <h4 class="font-bold text-yellow-500 text-xl mb-2">Juara 1</h4>
                             <div class="space-y-1">
                                 <p class="text-white font-bold text-lg flex items-center gap-2">
-                                    Rp 400.000 
+                                    Rp 500.000 
                                     <span class="text-[10px] font-normal text-rginc-gold border border-rginc-gold/50 px-2 py-0.5 rounded-sm tracking-wider">E-MONEY</span>
                                 </p>
                                 <p class="text-sm text-gray-300 flex items-center gap-2">
@@ -202,7 +202,7 @@
                             <h4 class="font-bold text-gray-300 text-xl mb-2">Juara 2</h4>
                             <div class="space-y-1">
                                 <p class="text-white font-bold text-lg flex items-center gap-2">
-                                    Rp 300.000 
+                                    Rp 400.000 
                                     <span class="text-[10px] font-normal text-rginc-gold border border-rginc-gold/50 px-2 py-0.5 rounded-sm tracking-wider">E-MONEY</span>
                                 </p>
                                 <p class="text-sm text-gray-300 flex items-center gap-2">

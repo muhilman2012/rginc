@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'admin@rginc.online'],
             [
                 'name' => 'Administrator',
-                'password' => Hash::make('passwordrahasia123'),
+                'password' => Hash::make('C3Nd00Ld!L4UT'),
                 'is_admin' => true,
             ]
         );
