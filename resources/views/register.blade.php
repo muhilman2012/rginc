@@ -33,36 +33,22 @@
 
                 <!-- Username IG -->
                 <div>
-                    <label class="flex items-center gap-2 text-sm font-medium text-gray-300 mb-2">
-                        Username Instagram
-                        
-                        <!-- Icon & Tooltip Wrapper -->
-                        <div class="relative group cursor-pointer flex items-center">
-                            <!-- Ikon Info (SVG) -->
-                            <svg class="w-4 h-4 text-gray-500 group-hover:text-rginc-gold transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            
-                            <!-- Kotak Tooltip (Muncul saat di-hover) -->
-                            <!-- Tambahan: w-[220px] dan max-w-none untuk mencegah teks menyusut, serta posisi digeser ke kiri (right-0 md:left-1/2) -->
-                            <div class="absolute bottom-full right-0 md:left-1/2 md:transform md:-translate-x-1/2 mb-2 w-[220px] max-w-none p-3 bg-slate-800 border border-slate-600 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-center">
-                                <p class="text-xs text-gray-300 font-normal leading-relaxed">
-                                    Cantumkan username Instagram sesuai dengan akun yang akan digunakan untuk upload bukti skor nantinya.
-                                </p>
-                                <!-- Segitiga Panah Bawah -->
-                                <div class="absolute top-full right-[6px] md:right-auto md:left-1/2 transform md:-translate-x-1/2 border-[6px] border-transparent border-t-slate-800"></div>
-                                <!-- Segitiga Panah Bawah (Border Luar) -->
-                                <div class="absolute top-full right-[5px] md:right-auto md:left-1/2 transform md:-translate-x-1/2 border-[7px] border-transparent border-t-slate-600 -z-10 mt-[1px]"></div>
-                            </div>
-                        </div>
-                    </label>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Username Instagram</label>
                     
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">@</span>
                         <input type="text" name="ig_username" value="{{ old('ig_username') }}" required 
                             class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-9 pr-4 py-2.5 text-white focus:outline-none focus:border-rginc-gold focus:ring-1 focus:ring-rginc-gold transition shadow-inner">
                     </div>
-                    @error('ig_username') <span class="text-red-400 text-sm mt-1">{{ $message }}</span> @enderror
+                    
+                    <!-- Teks Bantuan / Helper Text -->
+                    <p class="text-xs text-gray-500 mt-2">
+                        *Cantumkan username yang akan digunakan untuk upload bukti skor nantinya.
+                    </p>
+
+                    @error('ig_username') 
+                        <span class="text-red-400 text-sm mt-1 block">{{ $message }}</span> 
+                    @enderror
                 </div>
 
                 <!-- Nomor WhatsApp -->
