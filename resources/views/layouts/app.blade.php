@@ -164,6 +164,9 @@
             <div class="text-sm text-gray-500 text-center md:text-left">
                 <p>&copy; {{ date('Y') }} RGinc Anniversary & HUT RI ke-81.</p>
                 <p class="mt-1">All rights reserved.</p>
+                <p class="mt-2 text-xs">
+                    Made with <span class="text-red-500">&hearts;</span> by <a href="https://muhilman.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-rginc-gold transition-colors duration-300">Hilman</a>
+                </p>
             </div>
             
             <!-- Kanan: Social Media Icons -->
