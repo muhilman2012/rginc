@@ -276,7 +276,7 @@
 </div>
 
 <!-- ================= CTA GRATIS / PENDAFTARAN ================= -->
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pb-24 relative z-10">
     <div class="bg-slate-900/80 border-2 border-rginc-gold/30 hover:border-rginc-gold/60 rounded-3xl p-8 md:p-14 text-center relative overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-500 backdrop-blur-md group">
         
         <!-- Efek Cahaya Latar Belakang -->
@@ -298,7 +298,7 @@
 
             <!-- Deskripsi Singkat -->
             <p class="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Tunjukkan skill Pump It Up terbaikmu di hadapan komunitas nasional. Amankan slot kompetisimu sekarang, buktikan kemampuanmu, dan rebut total hadiah <strong class="text-rginc-gold">ratusan ribu rupiah</strong> serta gelar kebanggaan sang juara!
+                Tunjukkan skill Pump It Up terbaikmu di hadapan komunitas nasional. Amankan slot kompetisimu sekarang, buktikan kemampuanmu, dan rebut total hadiah <strong class="text-rginc-gold">jutaan rupiah</strong> serta gelar kebanggaan sang juara!
             </p>
 
             <!-- Tombol Aksi -->
@@ -317,6 +317,76 @@
             <p class="text-xs text-gray-500 mt-8 tracking-wide font-medium">
                 *Pastikan data AM.Pass ID dan kategori lomba sudah sesuai sebelum mendaftar.
             </p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SECTION SHARE EVENT ================= -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+    <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-10 text-center">
+        <h3 class="text-2xl font-bold text-white mb-2">Tantang Temanmu!</h3>
+        <p class="text-gray-400 text-sm mb-8">Bagikan tiket pendaftaranmu ke Instagram atau WhatsApp.</p>
+
+        <!-- Wrapper Preview Flyer (Tengah) -->
+        <div class="flex justify-center mb-8">
+            
+            <!-- FLYER ELEMENT (Proporsi 9:16 -> w-[300px] h-[533px]) -->
+            <div id="flyer-preview" class="relative w-[300px] h-[533px] rounded-xl overflow-hidden flex flex-col items-center p-6" style="background-color: #0f172a; border: 2px solid #d4af37; box-sizing: border-box;">
+                
+                <!-- Background Layer -->
+                <div class="absolute inset-0 z-0" style="background: radial-gradient(circle at center, #1e293b 0%, #0f172a 85%);"></div>
+
+                <!-- 1. HEADER: Logo Area -->
+                <div class="relative z-10 w-full flex justify-between items-start mb-8 mt-2">
+                    <img src="{{ asset('logo/M81_logo.png') }}" alt="M81" style="height: 32px; object-fit: contain;" crossorigin="anonymous">
+                    <img src="{{ asset('logo/phoenix2.png') }}" alt="Phoenix 2" style="height: 30px; object-fit: contain;" crossorigin="anonymous">
+                </div>
+
+                <!-- 2. BODY: Konten Teks -->
+                <div class="relative z-10 w-full text-center flex-grow flex flex-col justify-center items-center">
+                    <p style="color: #d4af37; font-size: 11px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px;">
+                        Mighty One 2026
+                    </p>
+                    
+                    <h4 style="color: #ffffff; font-size: 46px; font-weight: 900; line-height: 1; text-transform: uppercase; font-style: italic; margin-bottom: 24px; text-shadow: 2px 4px 6px rgba(0,0,0,0.8);">
+                        I AM <br> READY!
+                    </h4>
+                    
+                    <!-- Container Teks Random -->
+                    <div style="background-color: #d4af37; border-radius: 4px; padding: 8px 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.4);">
+                        <span id="random-quote" style="color: #0f172a; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px;">
+                            SIAP MENGHADAPI TANTANGAN!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 3. FOOTER: QR Code -->
+                <div class="relative z-10 flex flex-col items-center mt-auto mb-2">
+                    <p style="color: #9ca3af; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">
+                        Scan & Join The Battle
+                    </p>
+                    
+                    <div style="background-color: #ffffff; padding: 8px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.6);">
+                        <img src="{{ asset('images/qr-rginc.png') }}" 
+                             alt="QR Code Pendaftaran Mighty One" 
+                             style="width: 84px; height: 84px;"
+                             crossorigin="anonymous">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Aksi (Perhatikan tambahan , event di dalam onclick) -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button type="button" onclick="shareFlyer('ig', event)" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-transform transform hover:-translate-y-1">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Share ke IG
+            </button>
+
+            <button type="button" onclick="shareFlyer('wa', event)" class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-transform transform hover:-translate-y-1">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964 1.003-3.585c-.605-1.037-.922-2.242-.922-3.486 0-3.844 3.129-6.974 6.974-6.974 3.847 0 6.977 3.13 6.977 6.974 0 3.846-3.13 6.974-6.977 6.974z"/></svg>
+                Bagikan ke WhatsApp
+            </button>
         </div>
     </div>
 </div>
@@ -369,5 +439,88 @@
             observer.observe(prizeSection);
         }
     });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+async function shareFlyer(platform, event) {
+    const flyerElement = document.getElementById('flyer-preview');
+    
+    // Memberikan efek loading pada tombol agar terlihat interaktif
+    const currentBtn = event.currentTarget;
+    const originalText = currentBtn.innerHTML;
+    currentBtn.innerHTML = '<span class="animate-pulse">Memproses...</span>';
+    currentBtn.disabled = true; // Matikan tombol sementara agar tidak di-spam klik
+    
+    // ==========================================
+    // LOGIKA RANDOM QUOTES SEBELUM DI-GENERATE
+    // ==========================================
+    const quotes = [
+        "BUKTIKAN LANGKAH TERBAIKMU!",
+        "TANTANG BATAS MAKSIMALMU!",
+        "REBUT GELAR SANG JUARA!",
+        "NO EXCUSES, JUST PUMP IT!",
+        "SHOW YOUR BEST MOVES!",
+        "KALAHKAN KERAGUANMU!",
+        "SAATNYA MENDOMINASI STAGE!",
+        "SIAP MENJADI YANG TERKUAT!"
+    ];
+    
+    // Pilih 1 quote secara acak
+    const randomText = quotes[Math.floor(Math.random() * quotes.length)];
+    // Terapkan ke elemen HTML pita emas
+    document.getElementById('random-quote').innerText = randomText;
+    // ==========================================
+
+    try {
+        // 1. Convert div HTML menjadi Canvas/Gambar
+        const canvas = await html2canvas(flyerElement, { 
+            scale: 2, // Kualitas 2x lipat (HD) agar tidak pecah saat di-zoom
+            useCORS: true, // Wajib agar gambar logo/QR bisa dimuat ke canvas
+            backgroundColor: '#0f172a' // Samakan dengan warna background flyer
+        });
+
+        // Ubah canvas menjadi file gambar (Blob)
+        canvas.toBlob(async (blob) => {
+            const file = new File([blob], 'mighty-one-tiket.png', { type: 'image/png' });
+            
+            // Data yang akan dikirim ke aplikasi IG / WA
+            const shareData = {
+                title: 'Mighty One - RGInc',
+                text: 'Saya siap menantangmu di kompetisi Mighty One! Daftar sekarang via link di QR Code atau link https://rginc.online/ 🔥',
+                files: [file]
+            };
+
+            // 2. Cek apakah HP/Browser mendukung Web Share API beserta share File
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share(shareData);
+                } catch (error) {
+                    console.log('Proses share dibatalkan oleh pengguna.');
+                }
+            } else {
+                // 3. FALLBACK (Untuk Desktop/PC atau Browser Lama)
+                // Jika browser tidak punya menu Share bawaan, otomatis unduh gambarnya
+                const link = document.createElement('a');
+                link.download = 'MightyOne-RGInc.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                alert('Gambar berhasil diunduh! Silakan bagikan secara manual ke ' + (platform === 'ig' ? 'Instagram' : 'WhatsApp') + ' Anda.');
+            }
+            
+            // Kembalikan status dan teks tombol seperti semula setelah selesai
+            currentBtn.innerHTML = originalText;
+            currentBtn.disabled = false;
+        }, 'image/png');
+
+    } catch (error) {
+        console.error('Gagal membuat flyer:', error);
+        alert('Maaf, terjadi kesalahan saat memproses gambar.');
+        
+        // Kembalikan status tombol jika terjadi error (agar tidak macet)
+        currentBtn.innerHTML = originalText;
+        currentBtn.disabled = false;
+    }
+}
 </script>
 @endsection

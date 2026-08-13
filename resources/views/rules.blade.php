@@ -115,7 +115,7 @@
         <ul class="space-y-4 text-gray-300">
             <li class="flex items-start gap-3">
                 <span class="text-blue-400 mt-1">●</span>
-                <p>Peserta wajib mengunggah <strong>(upload)</strong> video permainan tersebut ke <strong>Instagram</strong>. Pastikan akun Instagram <strong>TIDAK DIPRIVASI</strong>.</p>
+                <p>Peserta wajib mengunggah <strong>(upload)</strong> video permainan tersebut ke <strong>Instagram</strong> menggunakan akun yang <strong>SAMA</strong> dengan yang didaftarkan saat registrasi. Pastikan akun Instagram <strong>TIDAK DIPRIVASI</strong>.</p>
             </li>
             <li class="flex items-start gap-3">
                 <span class="text-blue-400 mt-1">●</span>
@@ -147,7 +147,7 @@
         <ul class="space-y-4 text-gray-300">
             <li class="flex items-start gap-3">
                 <span class="text-yellow-500 font-bold mt-0.5">●</span>
-                <p>Seluruh peserta (baik yang lolos maupun yang tidak lolos ke babak selanjutnya) tetap berhak mengumpulkan skor individu untuk memenangkan kategori <strong>Best Speed Competition (#BSC)</strong>.</p>
+                <p>Hanya peserta yang berhasil masuk ke babak penyisihan <strong>(8 peserta dari setiap kategori)</strong> yang berhak mengumpulkan skor individu untuk memenangkan kategori <strong>Best Speed Competition (#BSC)</strong>, baik yang timnya lolos maupun gugur di babak selanjutnya.</p>
             </li>
             <li class="flex items-start gap-3">
                 <span class="text-yellow-500 font-bold mt-0.5">●</span>
