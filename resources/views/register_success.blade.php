@@ -100,14 +100,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-async function shareFlyer(platform, event) {
+// Variabel global untuk menyimpan gambar yang sudah siap
+let readyToShareFile = null;
+
+// FUNGSI 1: Berjalan otomatis saat halaman web selesai dimuat (Pre-generate)
+window.addEventListener('DOMContentLoaded', async () => {
     const flyerElement = document.getElementById('flyer-preview');
-    const currentBtn = event.currentTarget;
-    const originalText = currentBtn.innerHTML;
     
-    currentBtn.innerHTML = '<span class="animate-pulse">Memproses...</span>';
-    currentBtn.disabled = true; 
-    
+    // 1. Acak Quotes saat halaman dimuat
     const quotes = [
         "BUKTIKAN LANGKAH TERBAIKMU!",
         "TANTANG BATAS MAKSIMALMU!",
@@ -118,51 +118,68 @@ async function shareFlyer(platform, event) {
         "SAATNYA MENDOMINASI STAGE!",
         "SIAP MENJADI YANG TERKUAT!"
     ];
-    
     document.getElementById('random-quote').innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
+    // 2. Proses HTML ke Gambar secara diam-diam di background
     try {
         const canvas = await html2canvas(flyerElement, { 
             scale: 2, 
             useCORS: true, 
             backgroundColor: '#0f172a' 
         });
-
-        canvas.toBlob(async (blob) => {
-            const file = new File([blob], 'mighty-one-tiket.png', { type: 'image/png' });
-            
-            const shareData = {
-                title: 'Mighty One - RGInc',
-                text: 'Saya siap menantangmu di kompetisi Mighty One! Daftar sekarang via link di QR Code atau link https://rginc.online/ 🔥',
-                files: [file]
-            };
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                try {
-                    await navigator.share(shareData);
-                } catch (error) {
-                    console.log('Proses share dibatalkan.');
-                }
-            } else {
-                const link = document.createElement('a');
-                link.download = 'MightyOne-RGInc.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                
-                alert('Gambar berhasil diunduh! Silakan upload manual ke ' + (platform === 'ig' ? 'IG Story' : 'WA Status') + ' Anda.');
-            }
-            
-            currentBtn.innerHTML = originalText;
-            currentBtn.disabled = false;
-        }, 'image/png');
-
-    } catch (error) {
-        console.error('Gagal membuat flyer:', error);
-        alert('Maaf, terjadi kesalahan saat memproses gambar.');
         
+        canvas.toBlob((blob) => {
+            // Simpan hasilnya ke dalam memori
+            readyToShareFile = new File([blob], 'mighty-one-tiket.png', { type: 'image/png' });
+        }, 'image/png');
+    } catch(e) {
+        console.error("Gagal pre-render flyer:", e);
+    }
+});
+
+// FUNGSI 2: Berjalan saat tombol Share ditekan (Instant Execution)
+async function shareFlyer(platform, event) {
+    // Cek apakah gambar sudah selesai diproses di background
+    if (!readyToShareFile) {
+        alert('Gambar sedang dipersiapkan, silakan klik lagi dalam 1 detik!');
+        return;
+    }
+
+    const currentBtn = event.currentTarget;
+    const originalText = currentBtn.innerHTML;
+    currentBtn.innerHTML = '<span class="animate-pulse">Membuka...</span>';
+    currentBtn.disabled = true; 
+    
+    const shareData = {
+        title: 'Mighty One - RGInc',
+        text: 'Saya siap menantangmu di kompetisi Mighty One! Daftar sekarang via link di QR Code atau link https://rginc.online/ 🔥',
+        files: [readyToShareFile]
+    };
+
+    // Langsung eksekusi share (tanpa delay html2canvas, sehingga iOS WebKit tidak akan memblokir)
+    if (navigator.canShare && navigator.canShare({ files: [readyToShareFile] })) {
+        try {
+            await navigator.share(shareData);
+        } catch (error) {
+            console.log('Proses share dibatalkan oleh pengguna.');
+        }
+    } else {
+        // Fallback jika tetap tidak support (misal dibuka di PC)
+        const url = URL.createObjectURL(readyToShareFile);
+        const link = document.createElement('a');
+        link.download = 'MightyOne-RGInc.png';
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url); // Bersihkan memori
+        
+        alert('Gambar berhasil diunduh! Silakan upload manual ke ' + (platform === 'ig' ? 'IG Story' : 'WA Status') + ' Anda.');
+    }
+    
+    // Kembalikan tombol seperti semula
+    setTimeout(() => {
         currentBtn.innerHTML = originalText;
         currentBtn.disabled = false;
-    }
+    }, 1000);
 }
 </script>
 @endsection
