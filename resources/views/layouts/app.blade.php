@@ -49,6 +49,9 @@
             </span>
         </div>
     </div>
+    @php
+        $isClosed = \Carbon\Carbon::now('Asia/Jakarta')->greaterThanOrEqualTo(\Carbon\Carbon::create(2026, 8, 17, 0, 0, 0, 'Asia/Jakarta'));
+    @endphp
     <nav x-data="{ open: false }" class="border-b border-rginc-gold/20 bg-rginc-navy/95 backdrop-blur sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -135,10 +138,16 @@
                 Timeline
                 </a>
 
-                <a href="{{ route('register') }}" 
-                class="block px-3 py-2 mt-4 text-center rounded-md text-base font-bold shadow-lg {{ request()->routeIs('register*') ? 'bg-yellow-500 text-rginc-navy' : 'bg-rginc-gold text-rginc-navy' }}">
-                Daftar Sekarang
-                </a>
+                @if($isClosed)
+                    <span class="block px-3 py-2 mt-4 text-center rounded-md text-base font-bold shadow-none bg-slate-700 text-gray-400 cursor-not-allowed border border-slate-600">
+                        Pendaftaran Ditutup
+                    </span>
+                @else
+                    <a href="{{ route('register') }}" 
+                    class="block px-3 py-2 mt-4 text-center rounded-md text-base font-bold shadow-lg {{ request()->routeIs('register*') ? 'bg-yellow-500 text-rginc-navy' : 'bg-rginc-gold text-rginc-navy' }}">
+                    Daftar Sekarang
+                    </a>
+                @endif
             </div>
         </div>
     </nav>

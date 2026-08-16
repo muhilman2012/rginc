@@ -1,14 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $isClosed = \Carbon\Carbon::now('Asia/Jakarta')->greaterThanOrEqualTo(\Carbon\Carbon::create(2026, 8, 16, 23, 59, 59, 'Asia/Jakarta'));
+@endphp
+
 <!-- ================= HERO SECTION ================= -->
-<div class="relative overflow-hidden min-h-[85vh] flex items-center justify-center border-b border-rginc-gold/20">
+<div class="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
     <!-- Ornamen Lingkaran Emas di Background -->
     <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-rginc-gold/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-10 -left-20 w-80 h-80 bg-rginc-gold/10 rounded-full blur-3xl"></div>
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/5 rounded-full blur-3xl"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full mt-10">
+    <!-- Tambahan pb-24 disini agar tombol tidak ditabrak oleh ikon panah bawah -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full mt-10 pb-24">
         <div class="mb-6 inline-block">
             <img src="{{ asset('logo/M81_logo.png') }}" alt="M81 Logo" class="h-20 md:h-28 lg:h-36 w-auto drop-shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-transform duration-300 hover:scale-105">
         </div>
@@ -29,10 +34,17 @@
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="{{ route('register') }}" class="group relative bg-rginc-gold text-rginc-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:-translate-y-1 overflow-hidden">
-                <span class="relative z-10">DAFTAR SEKARANG</span>
-                <div class="absolute inset-0 -translate-x-full bg-white/30 group-hover:animate-[shimmer_1.5s_infinite] skew-x-12 w-1/2"></div>
-            </a>
+            @if($isClosed)
+                <button disabled class="group relative bg-slate-800 border-2 border-slate-600 text-gray-400 px-8 py-4 rounded-lg font-bold text-lg cursor-not-allowed overflow-hidden">
+                    <span class="relative z-10">PENDAFTARAN DITUTUP</span>
+                </button>
+             @else
+                <a href="{{ route('register') }}" class="group relative bg-rginc-gold text-rginc-navy px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:-translate-y-1 overflow-hidden">
+                    <span class="relative z-10">DAFTAR SEKARANG</span>
+                    <div class="absolute inset-0 -translate-x-full bg-white/30 group-hover:animate-[shimmer_1.5s_infinite] skew-x-12 w-1/2"></div>
+                </a>
+            @endif
+            
             <a href="#kategori" class="border-2 border-slate-600 text-gray-300 px-8 py-4 rounded-lg font-bold text-lg hover:border-rginc-gold hover:text-rginc-gold transition hover:bg-rginc-gold/5">
                 PELAJARI LEBIH LANJUT
             </a>
@@ -42,6 +54,68 @@
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
         <svg class="w-8 h-8 text-rginc-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
     </div>
+</div>
+
+<!-- ================= SECTION COUNTDOWN ================= -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-20">
+    
+    @if($isClosed)
+        <!-- JIKA WAKTU SUDAH HABIS (Dirender langsung oleh server PHP) -->
+        <div class="bg-[#0f172a] border-2 border-red-500 rounded-2xl p-8 md:p-12 shadow-[0_0_40px_rgba(239,68,68,0.4)] relative overflow-hidden flex flex-col items-center justify-center">
+            <div class="w-16 h-16 mb-3 flex items-center justify-center rounded-full bg-red-500/20 text-red-500 border border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            <h3 class="text-3xl md:text-5xl font-black text-white uppercase tracking-widest drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] mb-2">TIME IS UP</h3>
+            <p class="text-red-400 font-bold tracking-[0.2em] text-sm uppercase bg-red-950/50 px-6 py-2 rounded-full border border-red-500/30">Pendaftaran Resmi Ditutup</p>
+        </div>
+    @else
+        <!-- JIKA WAKTU MASIH ADA (Dirender Countdown Timer) -->
+        <div id="countdown-box" class="bg-[#0f172a] border-2 border-rginc-gold/50 rounded-2xl p-6 md:p-8 shadow-[0_0_30px_rgba(212,175,55,0.2)] relative overflow-hidden transition-all duration-700">
+            
+            <h3 id="cd-title" class="text-center text-rginc-gold font-bold tracking-widest text-sm md:text-base uppercase mb-6">
+                Sisa Waktu Pendaftaran
+            </h3>
+
+            <div id="cd-timer" class="flex justify-center items-center gap-3 md:gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-800 border border-slate-600 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <span id="cd-hours" class="text-3xl md:text-4xl font-black text-white relative z-10">00</span>
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-black/30 z-0"></div>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-400 mt-2 uppercase tracking-widest">Jam</span>
+                </div>
+                
+                <span class="text-2xl md:text-3xl font-bold text-rginc-gold pb-6 animate-pulse">:</span>
+                
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-800 border border-slate-600 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden">
+                        <span id="cd-minutes" class="text-3xl md:text-4xl font-black text-white relative z-10">00</span>
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-black/30 z-0"></div>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-gray-400 mt-2 uppercase tracking-widest">Menit</span>
+                </div>
+                
+                <span class="text-2xl md:text-3xl font-bold text-rginc-gold pb-6 animate-pulse">:</span>
+                
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-800 border border-rginc-gold/50 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] relative overflow-hidden">
+                        <span id="cd-seconds" class="text-3xl md:text-4xl font-black text-white relative z-10">00</span>
+                        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-black/30 z-0"></div>
+                    </div>
+                    <span class="text-[10px] md:text-xs text-rginc-gold mt-2 uppercase tracking-widest">Detik</span>
+                </div>
+            </div>
+
+            <!-- Layar Penutup JS (Digunakan HANYA jika pengunjung tetap buka tab saat waktu habis) -->
+            <div id="cd-finished" class="hidden absolute inset-0 bg-[#0f172a] flex-col items-center justify-center z-30">
+                <div class="w-16 h-16 mb-2 flex items-center justify-center rounded-full bg-red-500/20 text-red-500 animate-pulse border border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-black text-white uppercase tracking-widest drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] mb-1">TIME IS UP</h3>
+                <p class="text-red-400 font-bold tracking-[0.2em] text-xs md:text-sm uppercase bg-red-950/50 px-4 py-1 rounded-full border border-red-500/30">Pendaftaran Resmi Ditutup</p>
+            </div>
+        </div>
+    @endif
 </div>
 
 <!-- ================= KATEGORI & LEVEL SECTION ================= -->
@@ -390,6 +464,15 @@
         </div>
     </div>
 </div>
+<!-- Layar Penutup JS (Digunakan HANYA jika pengunjung tetap buka tab saat waktu habis) -->
+<div id="cd-finished" class="hidden absolute inset-0 bg-[#0f172a] flex-col items-center justify-center z-30 p-4">
+    <div class="w-12 h-12 md:w-16 md:h-16 mb-2 flex items-center justify-center rounded-full bg-red-500/20 text-red-500 animate-pulse border border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+    </div>
+    <!-- Teks diubah di sini -->
+    <h3 class="text-xl md:text-3xl text-center font-black text-white uppercase tracking-widest drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] mb-2">PENDAFTARAN DITUTUP</h3>
+    <p class="text-red-400 font-bold tracking-[0.2em] text-[10px] md:text-xs text-center uppercase bg-red-950/50 px-3 py-1.5 mt-2 rounded-full border border-red-500/30">Sampai Jumpa di Kompetisi!</p>
+</div>
 
 <style>
     @keyframes shimmer {
@@ -523,5 +606,77 @@ async function shareFlyer(platform, event) {
         currentBtn.disabled = false;
     }, 1000);
 }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const countDownDate = new Date("2026-08-16T23:59:59+07:00").getTime();
+
+    // Fungsi untuk menyemburkan Confetti
+    function fireConfetti() {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+            var timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            var particleCount = 50 * (timeLeft / duration);
+            // Semburkan dari dua sisi (kiri dan kanan)
+            confetti({
+                ...defaults, particleCount,
+                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+            });
+            confetti({
+                ...defaults, particleCount,
+                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+            });
+        }, 250);
+    }
+
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        
+        if (distance <= 0) {
+            clearInterval(x);
+            
+            const box = document.getElementById("countdown-box");
+            const finishedScreen = document.getElementById("cd-finished");
+            
+            if(box && finishedScreen) {
+                document.getElementById("cd-title").style.display = "none";
+                document.getElementById("cd-timer").style.display = "none";
+
+                box.classList.remove('border-rginc-gold/50', 'shadow-[0_0_30px_rgba(212,175,55,0.2)]');
+                box.classList.add('border-red-500', 'shadow-[0_0_40px_rgba(239,68,68,0.4)]');
+                
+                finishedScreen.classList.remove('hidden');
+                finishedScreen.classList.add('flex');
+                
+                // Panggil efek Confetti!
+                fireConfetti();
+            }
+            return;
+        }
+
+        const hours = Math.floor(distance / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        if(document.getElementById("cd-hours")) {
+            document.getElementById("cd-hours").innerHTML = hours < 10 ? "0" + Math.max(0, hours) : hours;
+            document.getElementById("cd-minutes").innerHTML = minutes < 10 ? "0" + Math.max(0, minutes) : minutes;
+            document.getElementById("cd-seconds").innerHTML = seconds < 10 ? "0" + Math.max(0, seconds) : seconds;
+        }
+    }, 1000);
+});
 </script>
 @endsection
